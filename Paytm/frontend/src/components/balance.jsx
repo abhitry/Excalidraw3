@@ -4,7 +4,7 @@ export const Balance=({value})=>{
             Your Balance
         </div>
         <div className="font-semibold ml-4 text-lg">
-            Rs{value}
+            Rs {value}
         </div>
     </div>
 }

@@ -10,10 +10,15 @@ export const Users = () => {
     const [filter, setFilter] = useState("");
 
     useEffect(() => {
-        axios.get("http://localhost:3000/api/v1/user/bulk?filter=" + filter)
-            .then(response => {
-                setUsers(response.data.user)
-            })
+        const fetchUsers = async () => {
+            try {
+                const respo = await axios.get(`http://localhost:3000/api/v1/user/bulk?filter=${filter}`);
+                setUsers(respo.data.user);
+            } catch (error) {
+                console.error("Error fetching users:", error);
+            }
+        };
+        fetchUsers();
     }, [filter])
 
     return <>
@@ -50,7 +55,8 @@ function User({user}) {
 
         <div className="flex flex-col justify-center h-ful">
             <Button onClick={(e) => {
-                navigate("/send?id=" + user._id + "&name=" + user.firstName+e);
+                console.log(e);
+                navigate("/send?id=" + user._id + "&firstname=" + user.firstName+"&lastname="+user.lastName);
             }} label={"Send Money"} />
         </div>
     </div>

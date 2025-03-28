@@ -10,7 +10,6 @@ export const Dashboard = () => {
     const [lastname, setLastname] = useState(null);
     useEffect(()=>{
         console.log("Dashboard Component Mounted");
-
   
         const getresponse=async()=>{
             try{
